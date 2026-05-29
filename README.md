@@ -71,6 +71,22 @@ A profitable arbitrage cycle therefore appears as a negative cycle in the graph,
 
 ---
 
+## Quick Start
+
+Clone the repository and run:
+
+run.bat
+
+This will:
+
+1. Fetch live market data
+2. Generate rates.csv
+3. Compile the arbitrage engine
+4. Detect arbitrage opportunities
+5. Generate arbitrage_report.txt
+   
+---
+
 ## Graph Representation
 
 Each node represents a state of capital:
