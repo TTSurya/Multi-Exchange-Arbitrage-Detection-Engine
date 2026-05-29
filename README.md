@@ -19,27 +19,35 @@ If the final capital exceeds the initial capital after accounting for fees and t
 
 This project automatically identifies such opportunities by representing markets as a graph and searching for negative cycles.
 
----
+## Why Bellman-Ford Works
 
-## Core Idea
-
-Suppose a sequence of trades has exchange rates:
+Consider a trading cycle with exchange rates:
 
 ```math
 r_1,r_2,\dots,r_n
 ```
 
-An arbitrage opportunity exists when:
+If starting with one unit of capital yields more than one unit after completing the cycle, an arbitrage opportunity exists:
 
 ```math
 r_1r_2\dots r_n > 1
 ```
 
-Since graph algorithms operate on additive costs rather than multiplicative gains, every rate is transformed as:
+The challenge is that exchange rates combine multiplicatively, whereas shortest-path algorithms operate on additive edge weights.
+
+To convert multiplication into addition, each exchange rate is transformed as:
 
 ```math
 w=-\log(r)
 ```
+
+Using:
+
+```math
+\log(ab)=\log(a)+\log(b)
+```
+
+we obtain:
 
 ```math
 -\log(r_1r_2\dots r_n)
@@ -59,7 +67,7 @@ is equivalent to:
 w_1+w_2+\dots+w_n < 0
 ```
 
-A profitable arbitrage cycle becomes a negative cycle in the graph.
+A profitable arbitrage cycle therefore appears as a negative cycle in the graph, allowing Bellman-Ford to detect it efficiently.
 
 ---
 
@@ -197,21 +205,12 @@ and can be extended easily to additional assets.
 
 ```text
 Cycle:
-
-USDT@Binance
--> BTC@Binance
--> BTC@Coinbase
--> USDT@Coinbase
--> USDT@Binance
+USDT@Binance -> BTC@Binance -> BTC@Coinbase -> USDT@Coinbase -> USDT@Binance
 
 Cycle Product: 1.0031
-
 Log Sum: -0.00309
-
 Start Capital: 1000
-
 End Capital: 1003.10
-
 Profit %: 0.31
 ```
 
