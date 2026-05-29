@@ -41,14 +41,6 @@ Since graph algorithms operate on additive costs rather than multiplicative gain
 w=-\log(r)
 ```
 
-Using the logarithm identity:
-
-```math
-\log(ab)=\log(a)+\log(b)
-```
-
-we obtain:
-
 ```math
 -\log(r_1r_2\dots r_n)
 =
