@@ -1,0 +1,34 @@
+Cycle:
+ETH@Binance -> ETH@TestExchange -> USDT@TestExchange -> BTC@TestExchange -> BTC@Binance -> USDT@Binance -> ETH@Binance
+
+Edge Details
+
+ETH@Binance -> ETH@TestExchange
+rate=0.999
+weight=0.0010005
+
+ETH@TestExchange -> USDT@TestExchange
+rate=6996.5
+weight=-8.85317
+
+USDT@TestExchange -> BTC@TestExchange
+rate=8.68753e-06
+weight=11.6536
+
+BTC@TestExchange -> BTC@Binance
+rate=0.999
+weight=0.0010005
+
+BTC@Binance -> USDT@Binance
+rate=73553.5
+weight=-11.2058
+
+USDT@Binance -> ETH@Binance
+rate=0.00049707
+weight=7.60678
+
+Cycle Product: 2.21783
+Log Sum: -0.796531
+Start Capital: 1000
+End Capital: 2217.83
+Profit %: 121.783
